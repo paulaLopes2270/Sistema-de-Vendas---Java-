@@ -1,0 +1,4 @@
+item: Qtd: Nome: Preço: SubTotal:
+1 2 Notebook 4999.0 9998.0
+2 3 Jeans 149.99 449.97
+Total: 10447.97
