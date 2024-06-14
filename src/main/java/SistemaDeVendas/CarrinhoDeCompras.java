@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CarrinhoDeCompras {
@@ -18,7 +19,30 @@ public class CarrinhoDeCompras {
     }
 
     public void removerItem(Produto produto) {
-        itens.remove(produto);
+        Iterator<Produto> it = itens.iterator();
+        while (it.hasNext()) {
+            Produto item = it.next();
+            if (item.equals(produto)) {
+                int novaQuantidade = item.getQuantidade() - 1;
+                double subTotalAntes = item.getPreco() * item.getQuantidade();
+                System.out.println("Removendo " + item.getNome() + ": " +
+                        "Quantidade restante antes da remoção: " + item.getQuantidade() + ", " +
+                        "Subtotal: " + subTotalAntes);
+
+                if (novaQuantidade > 0) {
+                    item.setQuantidade(novaQuantidade);
+                    System.out.println("Nova quantidade após remoção: " + novaQuantidade);
+                } else {
+                    it.remove();
+                    System.out.println("Produto removido completamente: " + item.getNome());
+                }
+                break; // Sair após ajustar a primeira ocorrência
+            }
+        }
+    }
+
+    public void limparCarrinho() {
+        itens.clear();
     }
 
     public void listarItens() {
@@ -27,8 +51,8 @@ public class CarrinhoDeCompras {
         }
     }
 
-    public List<Produto> exportarListaProdutos() {
-        return new ArrayList<>(itens);
+    public List<Produto> getItens() {
+        return itens;
     }
 
     public double calcularTotal() {
