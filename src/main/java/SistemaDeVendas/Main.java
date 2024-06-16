@@ -43,6 +43,10 @@ public class Main {
         carrinho1.limparCarrinho();
         System.out.println("\nCarrinho 1 após limpar tudo:");
         listarItensCarrinho(carrinho1);
+
+        // Gerar arquivos de texto para ambos os carrinhos
+        carrinho1.gerarArquivoTexto("Carrinho1.txt");
+        carrinho2.gerarArquivoTexto("Carrinho2.txt");
     }
 
     // Função auxiliar para listar itens do carrinho
